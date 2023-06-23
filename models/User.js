@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose');
 
-// Schema to create a course model
-const courseSchema = new Schema(
+// Schema to create a user model
+const userSchema = new Schema(
   {
-    courseName: {
+    userName: {
       type: String,
       required: true,
     },
@@ -20,10 +20,10 @@ const courseSchema = new Schema(
       // Sets a default value of 12 weeks from now
       default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
     },
-    students: [
+    thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Student',
+        ref: 'Thought',
       },
     ],
   },
@@ -34,12 +34,12 @@ const courseSchema = new Schema(
     id: false,
   }
 );
-// courseSchema.virtual('studentCount').get(function () {
-//   return this.students.length
+// userSchema.virtual('thoughtCount').get(function () {
+//   return this.thoughts.length
 // })
 
 
 
-const Course = model('Course', courseSchema);
+const User = model('User', userSchema);
 
-module.exports = Course;
+module.exports = User;
